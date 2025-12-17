@@ -1,0 +1,23 @@
+# --- .NET/C# ---
+bin/
+obj/
+[Log]/
+TestResults/
+*.swp
+*.*~
+
+# --- Pacotes e Builds ---
+.nuget/
+packages/
+publish/
+
+# --- VS Code ---
+.vscode/
+.history/
+
+# --- Segredos e Configurações Locais ---
+appsettings.Development.json
+.env
+*.user
+*.userosscache
+*.sln.docstates
