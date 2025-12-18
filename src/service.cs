@@ -1,9 +1,13 @@
 namespace ChallengeBlip.Services;
 
+using System;
 using System.Globalization;
 using System.Net;
-using ChallengeBlip.Models;
+using System.Net.Http;    
 using System.Text.Json;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using ChallengeBlip.Models;
 
 public class WeatherService
 {
@@ -24,6 +28,10 @@ public class WeatherService
     {
 
         city = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(city.ToLowerInvariant());
+        if (city.Length < 4)
+        {
+            throw new ArgumentException("O nome da cidade deve ter pelo menos 4 caracteres.");
+        }
         var url = $"{_baseURL}/current.json?key={header}&q={city}&lang={lang}&dt={date:yyyy-MM-dd}";
 
         try
