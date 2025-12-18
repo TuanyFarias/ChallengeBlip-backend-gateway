@@ -1,18 +1,22 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using ChallengeBlip.Controllers;
 using ChallengeBlip.Services;
+using WeatherGateway.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Registrar HttpClient e Controllers
+// Builds
 builder.Services.AddHttpClient<WeatherService>();
 builder.Services.AddControllers();
+builder.Services.AddSwaggerDocumentation();
+builder.Services.AddFrontendCors();
+
 
 var app = builder.Build();
 
-// Middleware
+// Use app
+app.UseSwaggerDocumentation();
+app.UseCors("Frontend");
 app.UseMiddleware<ApiHeaderMiddleware>();
 
 // Mapear Controllers

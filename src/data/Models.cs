@@ -5,6 +5,15 @@ public class WeatherResponse
 {
     [JsonPropertyName("current")]
     public Current? Current { get; set; }
+
+    [JsonPropertyName("location")]
+    public Location? location { get; set; }
+}
+
+public class Location
+{
+    [JsonPropertyName("name")]
+    public string name { get; set; } = string.Empty;
 }
 
 public class Current

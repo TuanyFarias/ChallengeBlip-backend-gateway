@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Net;
+using System;
 using System.Threading.Tasks;
 
 public class ApiHeaderMiddleware
@@ -18,9 +20,16 @@ public class ApiHeaderMiddleware
      {
         try
         {
-            if (context.Request.Method != "GET" || string.IsNullOrEmpty(_apiKey))
+            if (!context.Request.Headers.TryGetValue("Authorization", out var X_API_KEY))
             {
                 throw new UnauthorizedAccessException();
+            }
+
+            if (X_API_KEY != _apiKey)
+            {
+                context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                await context.Response.WriteAsync("API key inválida!");
+                return;
             }
 
             context.Items["WeatherApiKey"] = _apiKey;
