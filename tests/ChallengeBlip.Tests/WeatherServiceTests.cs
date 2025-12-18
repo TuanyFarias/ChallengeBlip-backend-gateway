@@ -1,14 +1,10 @@
-using System;
+
 using System.Net;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Moq;
 using Moq.Protected;
-using Xunit;
 using ChallengeBlip.Services;
-using ChallengeBlip.Models;
+
 
 public class WeatherServiceTests
 {
