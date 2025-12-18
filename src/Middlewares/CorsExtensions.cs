@@ -8,7 +8,7 @@ public static class CorsExtensions
         {
             options.AddPolicy("Frontend",
                 policy => policy
-                    .WithOrigins("https://challenge-blip-frontend-gateway.vercel.app/")
+                    .WithOrigins("https://challenge-blip-frontend-gateway.vercel.app")
                     .WithMethods("GET")
                     .AllowAnyHeader());
         });
