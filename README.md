@@ -4,7 +4,7 @@ Esta é uma API Gateway desenvolvida em **.NET 10** como parte do desafio técni
 
 ## 🚀 Link da API (Deploy)
 A API está rodando no Render e pode ser acessada (via Swagger) em:
-👉 **[Documentação Swagger - Render](https://challengeblip-backend-gateway.onrender.com/swagger)**
+* **[Acessar Documentação Swagger](https://challengeblip-backend-gateway.onrender.com/index.html)** 👈
 
 ---
 
