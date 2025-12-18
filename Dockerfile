@@ -5,7 +5,10 @@ WORKDIR /src
 COPY ["ChallengeBlip.csproj", "./"]
 RUN dotnet restore "ChallengeBlip.csproj"
 
+
 COPY . .
+
+RUN rm -rf tests/
 RUN dotnet publish "ChallengeBlip.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 
