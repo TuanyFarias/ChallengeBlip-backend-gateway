@@ -1,6 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi.Any;
+using ChallengeBlip.Models;
 
 namespace WeatherGateway.Extensions
 {
@@ -10,7 +12,33 @@ namespace WeatherGateway.Extensions
         {
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(c =>
-            {
+            {   
+                c.MapType<WeatherResponse>(() => new OpenApiSchema
+                    {
+                        Example = new OpenApiObject
+                        {
+                            ["location"] = new OpenApiObject
+                            {
+                                ["name"] = new OpenApiString("São Paulo")
+                            },
+                            ["current"] = new OpenApiObject
+                            {
+                                ["temp_c"] = new OpenApiDouble(23),
+                                ["feelslike_c"] = new OpenApiDouble(24),
+                                ["humidity"] = new OpenApiInteger(60),
+                                ["cloud"] = new OpenApiInteger(40),
+                                ["is_day"] = new OpenApiInteger(1),
+                                ["last_updated"] = new OpenApiString("2025-01-01 12:00"),
+                                ["condition"] = new OpenApiObject
+                                {
+                                    ["text"] = new OpenApiString("Partly cloudy"),
+                                    ["icon"] = new OpenApiString("//cdn.weatherapi.com/weather/64x64/day/116.png"),
+                                    ["code"] = new OpenApiInteger(116)
+                                }
+                            }
+                        }
+                    });
+
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Clima API", Version = "v1" });
                 c.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
                 {

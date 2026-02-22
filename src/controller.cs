@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using ChallengeBlip.Services;
+using Microsoft.AspNetCore.Http;
+using ChallengeBlip.Models;
 namespace ChallengeBlip.Controllers;
 
 [ApiController]
-[Route("api/weather")] 
+[Route("api/weather")]
 
 public class WeatherController : ControllerBase
 {
@@ -16,6 +18,12 @@ public class WeatherController : ControllerBase
 
 
     [HttpGet]
+    [ProducesResponseType(typeof(WeatherResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(string), StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+
     public async Task<IActionResult> Get(
         [FromQuery] string city,
         string lang = "pt"
