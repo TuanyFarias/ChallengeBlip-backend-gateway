@@ -32,7 +32,7 @@ public class WeatherService
         {
             throw new ArgumentException("O nome da cidade deve ter pelo menos 4 caracteres.");
         }
-        var url = $"{_baseURL}/current.json?key={header}&q={city}&lang={lang}&dt={date:yyyy-MM-dd}";
+        var url = $"{_baseURL}/current.json?key={header}&q={city}&lang={lang}";
 
         try
         {
